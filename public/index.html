@@ -1,13 +1,31 @@
 <!doctype html>
 <html>
     <head>
+        <style>
+button {
+    font-size: 80pt;
+}
+
+#bedroomLights {
+    margin: 50px
+}
+
+#officeLights {
+    margin: 50px
+}
+        </style>
         <title>Wyze Bulb Interface</title>
-        <!-- <script src="wyze.js" type="module"></script> -->
-        <script src="testing.js"></script>
+        <script src="index.js"></script>
+        <script>
+            hello()
+        </script>
     </head>
         <h1>Wyze Bulb Interface</h1>
-        <div>
-          <button onClick="testing()">John's Room</button>
+        <div id="officeLights">
+          <button onClick="toggleLights('officeLights')">John's Room</button>
         </div>
+        <div id="bedroomLights">
+            <button onClick="toggleLights('bedroomLights')">Bedroom</button>
+          </div>
     </body>
 </html>

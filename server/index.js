@@ -1,21 +1,18 @@
-const Wyze = require('wyze-node')
 require('dotenv').config()
-//import Wyze from './wyze.js'
-
+const Wyze = require('wyze-node')
 const express = require('express')
 const app = express()
-const port = 3000
+const path = require('path')
+const port = process.env.SERVER_PORT
 
-app.get('/lights/', (req, res) => {
+app.get('/officeLights/', (req, res) => {
   officeLights()
   res.send('Hello World!')
 })
 
-const path = require('path')
-app.use(express.static(__dirname + '/../public'));
-
-app.listen(port, () => {
-  console.log(`Wyze Household Server listening on port ${port}`)
+app.get('/bedroomLights/', (req, res) => {
+  bedroomLights()
+  res.send('Hello World!')
 })
 
 const options = {
@@ -32,3 +29,13 @@ async function officeLights() {
   toggleDevice(await wyze.getDeviceByName('Color Bulb 1'))
   toggleDevice(await wyze.getDeviceByName('Color Bulb 2'))
 }
+
+async function bedroomLights() {
+  toggleDevice(await wyze.getDeviceByName(`John's Night Light`))
+  toggleDevice(await wyze.getDeviceByName(`Maria’s Night Light`))
+}
+
+app.listen(port, () => {
+  console.log(`Wyze Household Server listening on port ${port}`)
+})
+app.use(express.static(__dirname + '/../public'));

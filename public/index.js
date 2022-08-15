@@ -1,7 +1,5 @@
-function testing() {
-  console.log('hello world')
-
-  fetch('http://192.168.1.61:3000/lights/',
+function toggleLights(endpoint) {
+  fetch(`http://localhost:3000/${endpoint}/`,
     {
       method: "GET",
       mode: 'no-cors',
@@ -15,4 +13,8 @@ function testing() {
     .catch((err) => {
       console.log(err)
     })
+}
+
+function hello() {
+  console.log('hello world!')
 }
