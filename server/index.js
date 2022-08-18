@@ -38,4 +38,4 @@ async function bedroomLights() {
 app.listen(port, () => {
   console.log(`Wyze Household Server listening on port ${port}`)
 })
-app.use(express.static(__dirname + '/../public'));
+app.use(express.static(__dirname + '/../dist'));

@@ -1,5 +1,9 @@
+function hello() {
+  console.log('hello world!')
+}
+
 function toggleLights(endpoint) {
-  fetch(`http://localhost:3000/${endpoint}/`,
+  fetch(`http://${SERVER_IP}:${SERVER_PORT}/${endpoint}/`,
     {
       method: "GET",
       mode: 'no-cors',
@@ -13,8 +17,4 @@ function toggleLights(endpoint) {
     .catch((err) => {
       console.log(err)
     })
-}
-
-function hello() {
-  console.log('hello world!')
 }
