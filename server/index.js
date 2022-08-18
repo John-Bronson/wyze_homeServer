@@ -15,11 +15,20 @@ app.get('/bedroomLights/', (req, res) => {
   res.send('Hello World!')
 })
 
+app.get('/deviceList', async (req, res) => {
+  res.send(await getList())
+})
+
 const options = {
   username: process.env.USERNAME,
   password: process.env.PASSWORD
 }
 const wyze = new Wyze(options)
+
+async function getList() {
+  deviceList = await wyze.getDeviceList()
+  return deviceList
+}
 
 async function toggleDevice(device) {
   device.device_params.switch_state === 0 ? await wyze.turnOn(device) : await wyze.turnOff(device)
@@ -39,3 +48,8 @@ app.listen(port, () => {
   console.log(`Wyze Household Server listening on port ${port}`)
 })
 app.use(express.static(__dirname + '/../dist'));
+
+; (async () => {
+  console.log(await getList())
+})()
+
